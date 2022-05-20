@@ -22,7 +22,7 @@ library(devtools)
 library(metagMisc)
 
 ### Set working directory
-setwd("/Volumes/ShadeLab/WorkingSpace/MarcoMechan_WorkingSpace/Mucilage_TX08001_2020/Controls/phyloseq")
+#setwd("/Volumes/ShadeLab/WorkingSpace/MarcoMechan_WorkingSpace/Mucilage_TX08001_2020/Controls/phyloseq")
 
 #### Panel A: Expected Mock community
 Controls.metadata=read.table("Mock_comm_metadata.txt", sep="\t", header = T)
