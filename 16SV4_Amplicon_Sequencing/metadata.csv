@@ -1,0 +1,5 @@
+﻿SampleID,Experiment,Sample.Type,Month.colection,Year.Collection,Sample.name
+Mock.ShadeLab,Control,Positive control,August,2020,Mock.ShadeLab
+Mock.Zymo,Control,Positive control,August,2020,Mock.Zymo
+Muc.NC1,Control,Negative control,August,2020,Muc.NC1
+RTSF.NC,Control,Negative control,August,2020,RTSF.NC
