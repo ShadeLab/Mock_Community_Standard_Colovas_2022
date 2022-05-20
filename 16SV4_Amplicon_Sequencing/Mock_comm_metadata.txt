@@ -4,7 +4,6 @@ Isolate_1	Firmicutes	Bacillales	Bacillaceae	Bacillus	Bacillus spizizenii	10	Mock
 Isolate_2	Proteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas eeruginosa	4	Mock.ShadeLab	0.125	Mock
 Isolate_3	Firmicutes	Staphylococcales	Staphylococcaceae	Staphylococcus	Staphylococcus aureus	6	Mock.ShadeLab	0.125	Mock
 Isolate_4	Proteobacteria	Rhizobiales	Rhizobiaceae	Ochrobactrum	Ochrobactrum sp.	5	Mock.ShadeLab	0.125	Mock
-Isolate_5	Proteobacteria	Hyphomicrobiales	Rhizobiaceae	Rhizobium	Rhizobium PvP014	6	Mock.ShadeLab	0.125	Mock
-Isolate_6	Actinobacteriota	Streptomycetales	Streptomycetaceae	Streptomyces	Streptomyces sp.	6	Mock.ShadeLab	0.125	Mock
-Isolate_7	Proteobacteria	Enterobacterales	Enterobacteriaceae	Escherichia-Shigella	Escherichia coli	7	Mock.ShadeLab	0.125	Mock
-Isolate_8	Proteobacteria	Enterobacterales	Enterobacteriaceae	Salmonella	Salmonella enterica	7	Mock.ShadeLab	0.125	Mock
+Isolate_5	Actinobacteriota	Streptomycetales	Streptomycetaceae	Streptomyces	Streptomyces sp.	6	Mock.ShadeLab	0.125	Mock
+Isolate_6	Proteobacteria	Enterobacterales	Enterobacteriaceae	Escherichia-Shigella	Escherichia coli	7	Mock.ShadeLab	0.125	Mock
+Isolate_7	Proteobacteria	Enterobacterales	Enterobacteriaceae	Salmonella	Salmonella enterica	7	Mock.ShadeLab	0.125	Mock
