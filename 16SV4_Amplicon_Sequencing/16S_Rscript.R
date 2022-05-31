@@ -20,17 +20,22 @@ library(tidyverse)
 library(metagenomeSeq)
 library(devtools)
 library(metagMisc)
+library(stringr)
 
 ### Set working directory
 #setwd("/Volumes/ShadeLab/WorkingSpace/MarcoMechan_WorkingSpace/Mucilage_TX08001_2020/Controls/phyloseq")
 
 #### Panel A: Expected Mock community
 Controls.metadata=read.table("Mock_comm_metadata.txt", sep="\t", header = T)
-
+Control.expected.ord <- transform.data.frame(Controls.metadata, 
+                                             Control.expected.ord  = factor(
+                                               Genus,
+                                               levels=c("Bacillus","Escherichia-Shigella","Salmonella","Pseudomonas","Ochrobactrum","Staphylococcus","Streptomyces"),
+                                               ordered =TRUE))
 col_vector <- c("Bacillus"="#ffeda0", "Escherichia-Shigella"="#feb24c","Salmonella"="#fee6ce","Pseudomonas"="#a1d99b","Ochrobactrum"="#756bb1","Staphylococcus"="#fa9fb5","Streptomyces"="#7095c5")
 
-Control.expected.plot <- ggplot(Control.expected.ord, aes(y=Abundance, x=Source)) + 
-  geom_bar(stat="identity", aes(fill=Genus)) + 
+Control.expected.plot <- ggplot(Control.expected.ord, aes(y=Abundance, x=Source, order=Control.expected.ord)) + 
+  geom_bar(stat="identity", aes(fill=order=Control.expected.ord)) + 
   scale_fill_manual(values =col_vector) + 
   guides(fill=guide_legend(keywidth = 1,keyheight = 1)) + 
   labs(fill="Bacterial Genus")+
@@ -42,8 +47,8 @@ Control.expected.plot <- ggplot(Control.expected.ord, aes(y=Abundance, x=Source)
         strip.text.y = element_text(size=14, face = 'bold'),
         plot.title = element_text(size = rel(2)),
         axis.title=element_text(size=14,face="bold", vjust = 10),
-        legend.text = element_text(size=10),
-        legend.title = element_text(size =12, face="bold"),
+        legend.text = element_text(size=14),
+        legend.title = element_text(size =14, face="bold"),
         plot.background = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank())
@@ -141,11 +146,17 @@ Shadelab.Community.genus <- Shadelab.Comm %>%
   psmelt() %>%
   filter(Abundance > 0.005)%>%                    
   arrange(Genus)
-
+                    
+Shadelab.Community.genus.ord <- transform.data.frame(Shadelab.Community.genus,
+                                          Shadelab.Community.genus.ord  = factor(
+                                          Genus,
+                                          levels=c("Bacillus","Escherichia-Shigella","Salmonella","Pseudomonas","Ochrobactrum","Staphylococcus","Streptomyces"),
+                                          ordered =TRUE))
+                      
 col.vector <- c("Bacillus"="#ffeda0", "Escherichia-Shigella"="#feb24c","Salmonella"="#fee6ce","Pseudomonas"="#a1d99b","Ochrobactrum"="#756bb1","Staphylococcus"="#fa9fb5","Streptomyces"="#7095c5")
 
-Shadelab.Community.genus.plot <- ggplot(Shadelab.Community.genus, aes(y=Abundance, x=Sample)) + 
-  geom_bar(stat="identity", aes(fill=Genus)) + 
+Shadelab.Community.genus.plot <- ggplot(Shadelab.Community.genus.ord, aes(y=Abundance, x=Sample, order=Shadelab.Community.genus.ord)) + 
+  geom_bar(stat="identity", aes(fill=order=Shadelab.Community.genus.ord)) + 
   scale_fill_manual(values =col.vector) + 
   guides(fill=guide_legend(reverse=F,keywidth = 1,keyheight = 1)) + 
   labs(fill="Bacterial Genus")+
@@ -158,8 +169,8 @@ Shadelab.Community.genus.plot <- ggplot(Shadelab.Community.genus, aes(y=Abundanc
         plot.title = element_text(size = rel(2)),
         axis.title.y =element_text(size=0,face="bold", vjust = 10),
         axis.title.x =element_text(size=14,face="bold", vjust = 0),
-        legend.text = element_text(size=10),
-        legend.title = element_text(size =12, face="bold"),
+        legend.text = element_text(size=14),
+        legend.title = element_text(size =14, face="bold"),
         plot.background = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank())
@@ -180,11 +191,16 @@ Merged.Df2 <- Merged.Df %>%
          Relativ.Abundance = sum(as.numeric(Abundance)),
          Relativ.Abundance = ((Abundance*100)/Relativ.Abundance)/100)
 
-
+Norm.Comm.genus.ord <- transform.data.frame(Merged.Df2,
+                                            Norm.Comm.genus.ord  = factor(
+                                              Genus,
+                                              levels=c("Bacillus","Escherichia-Shigella","Salmonella","Pseudomonas","Ochrobactrum","Staphylococcus","Streptomyces"),
+                                              ordered =TRUE))
+                      
 col.vector <- c("Bacillus"="#ffeda0", "Escherichia-Shigella"="#feb24c","Salmonella"="#fee6ce","Pseudomonas"="#a1d99b","Ochrobactrum"="#756bb1","Staphylococcus"="#fa9fb5","Streptomyces"="#7095c5")
 
-Correct.Comm.plot <- ggplot(Merged.Df2, aes(y=Relativ.Abundance, x=Sample)) + 
-  geom_bar(stat="identity", aes(fill=Genus)) + 
+Correct.Comm.plot <- ggplot(Norm.Comm.genus.ord, aes(y=Relativ.Abundance, x=Sample, order=Norm.Comm.genus.ord)) + 
+  geom_bar(stat="identity", aes(fill=Norm.Comm.genus.ord)) + 
   scale_fill_manual(values =col.vector) + 
   guides(fill=guide_legend(reverse=F,keywidth = 1,keyheight = 1)) + 
   labs(fill="Bacterial Genus")+
@@ -221,4 +237,5 @@ SL.legend = cowplot::plot_grid(Shadelab_legend, ncol=1)
 Figure.Mock.Comm = cowplot::plot_grid(Figure.Mock.Comm, SL.legend, nrow=1, ncol=2, rel_widths = c(0.8,0.2))
 
 Figure.Mock.Comm
+ggsave("ShadeLab_Mock_community.png", width = 11, height = 6,bg = "white", dpi=600)
                       
